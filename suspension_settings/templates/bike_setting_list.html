@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Settings for {{ object_list.0.Bike }}</h2>
+        {% for setting in object_list %}
+        <div class="card" style="width: 20rem; margin: 5%;">
+                <div class="card-header">
+                    <a href="/settings/update/{{ setting.pk }}">Setting {{ setting.pk }}</a>
+                </div>
+                <div class="card-body">
+                <p class="card-text">
+                        Spring Rate: {{ setting.SpringRate }} <br>
+                        Front Compression: {{ setting.SpringRate }}<br>
+                        Front Rebound: {{ setting.FrontRebound }}<br>
+                        <br>
+                        Rear High Speed Compression: {{ setting.RearHighSpeedCompression }}<br>
+                        Rear Low Speed Compression: {{ setting.RearLowSpeedCompression }}<br>
+                        Rear Rebound: {{ setting.RearRebound }}<br>
+                        Sag: {{ setting.Sag }}<br>
+                        <br>
+                        Feel: {{ setting.Notes }}
+                </p>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}
