@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'crispy_forms',
     'suspension_settings.apps.SuspensionSettingsConfig',
     'django.contrib.admin',
@@ -51,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'suspension_log.urls'
@@ -66,6 +69,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -123,4 +129,27 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/settings'
+LOGOUT_REDIRECT_URL = 'login'
+
+MEDIA_ROOT = "media"
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId', 
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL = 'suspension_settings.User'
+
+SOCIAL_AUTH_GITHUB_KEY = 'f0b845146e694bcbdcc3'
+SOCIAL_AUTH_GITHUB_SECRET = 'f7dc99169b41457ef27c24d8861e7dfec420e29b'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='470725812912-boj90g3h2076g3fe9oqne77ltgsgnr1g.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "fK3hjI3o-HE0430swWAOKnR1"

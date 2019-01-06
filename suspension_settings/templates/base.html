@@ -11,15 +11,24 @@
     <title>Dirtbike Suspension Log</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <h1 class="mt-2">Suspension Log</h1>
-          <hr class="mt-0 mb-4">
-          {% block content %}
-          {% endblock %}
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/settings">Suspension Log - {% block nav %} {{ user.username }} {% endblock %}</a>      
+        <span class="navbar-text">
+            <a href="/logout"> Logout </a> 
+        </span>
+    </nav>
+    
+       
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <hr class="mt-0 mb-4">
+            {% block content %}
+            {% endblock %}
+          </div>
         </div>
       </div>
-    </div>
   </body>
 </html>
+
+

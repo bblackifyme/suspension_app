@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
 
 # Create your models here.
 class Setting(models.Model):
@@ -43,7 +47,7 @@ class Setting(models.Model):
         )
     
     def get_absolute_url(self):
-        return "/settings"
+        return "/settings/%s" % self.Bike.id
 
 class Bike(models.Model):
     "Class reperesenting a Dirt Bike & its meta data"
@@ -52,7 +56,12 @@ class Bike(models.Model):
     Year = models.IntegerField()
     Fork = models.CharField(max_length=20)
     Shock = models.CharField(max_length=20)
+    LastMaintence = models.DateField()
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s %s %s' % ( self.Year, self.Make, self.Model)
+
+    def get_absolute_url(self):
+        return "/settings"
         

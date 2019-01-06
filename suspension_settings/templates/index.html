@@ -1,37 +1,27 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 {% extends 'base.html' %}
-
 {% block content %}
-    {% for setting in settings %}
+<div class="card-deck">
+    {% for bike in bikes %}
         <div class="card" style="width: 20rem; margin: 5%;">
             <div class="card-header">
-                <a href="/settings/update/{{ setting.pk }}">Setting {{ setting.pk }}</a>
+                <a href="/settings/{{ bike.pk }}">{{ bike }}</a>
             </div>
             <div class="card-body">
             <p class="card-text">
-                    Spring Rate: {{ setting.SpringRate }} <br>
-                    Front Compression: {{ setting.SpringRate }}<br>
-                    Front Rebound: {{ setting.FrontRebound }}<br>
-                    <br>
-                    Rear High Speed Compression: {{ setting.RearHighSpeedCompression }}<br>
-                    Rear Low Speed Compression: {{ setting.RearLowSpeedCompression }}<br>
-                    Rear Rebound: {{ setting.RearRebound }}<br>
-                    Sag: {{ setting.Sag }}<br>
-                    <br>
-                    Feel: {{ setting.Notes }}
+                    Forks: {{ bike.Fork }} <br>
+                    Shock: {{ bike.Shock }} <br>          
             </p>
             </div>
         </div>
     {% endfor %}
+</div>
 
     <footer class="navbar-default fixed-bottom">
         <!-- Footer Links -->
         <div class="container-fluid text-center text-md-left">
-            <a href="settings/add">Add a new Setting</a>
-        </div>
-        <div class="container-fluid text-center text-md-left">
-            <a href="settings/add_from_last">Add from last Setting</a>
+            <a href="settings/add-bike">Add a new Bike</a>
         </div>
     </footer>
 {% endblock %}

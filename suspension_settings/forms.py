@@ -9,3 +9,4 @@ class SettingForm(forms.ModelForm):
         fields = ('Bike', 'SpringRate', 'FrontCompression', 'FrontRebound', 'RearHighSpeedCompression',
               'RearLowSpeedCompression', 'RearRebound', 'Sag', 'Notes',
                 )
+        widgets = {'Bike': forms.HiddenInput()}
